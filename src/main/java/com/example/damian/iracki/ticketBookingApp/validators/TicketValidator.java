@@ -9,6 +9,14 @@ import java.util.regex.Pattern;
 
 public class TicketValidator {
 
+    public boolean checkTicket(Ticket ticket, Screening screening){
+        if(checkName(ticket) && checkSurname(ticket) && checkTicketDate(screening)
+                && checkCorrectnessOfSeat(ticket,screening)){
+            return true;
+        }
+        return false;
+    }
+
     private boolean checkTicketDate(Screening screening){
         if(!LocalDateTime.now().isBefore(screening.getStartingDateTime().minusMinutes(15))){
             throw new IllegalStateException("Is too late to book this ticket");
@@ -37,11 +45,14 @@ public class TicketValidator {
         return true;
     }
 
-    public boolean checkTicket(Ticket ticket, Screening screening){
-        if(checkName(ticket)&&checkSurname(ticket)&&checkTicketDate(screening)){
+    private boolean checkCorrectnessOfSeat(Ticket ticket, Screening screening){
+        if(ticket.getNumberOfRow() <= screening.getScreeningRoom().getRowCount()
+                && ticket.getNumberOfSeatInRow() <= screening.getScreeningRoom().getSeatsInRowCount()
+                && 0 > ticket.getNumberOfRow() && 0 > ticket.getNumberOfSeatInRow()){
             return true;
+        } else {
+            throw new IllegalStateException("Entered seats isn't correct");
         }
-        return false;
     }
 
 }
