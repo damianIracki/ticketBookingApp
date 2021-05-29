@@ -1,6 +1,7 @@
 package com.example.damian.iracki.ticketBookingApp.resources;
 
 import com.example.damian.iracki.ticketBookingApp.entities.Screening;
+import com.example.damian.iracki.ticketBookingApp.entities.ScreeningRoom;
 import com.example.damian.iracki.ticketBookingApp.services.ScreeningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class ScreeningResource {
 
     //Ind date param put string in format yyyy-MM-dd_HH:mm
     @GetMapping("/date/{sortingType}")
-    public ResponseEntity<List<Screening>> getScreeningsBetweenDate(@PathVariable String sortingType,
+    public ResponseEntity<List<Screening>> getScreeningsBetweenDate(@PathVariable("sortingType") String sortingType,
                                                                     @RequestParam(required = true) String startDate,
                                                                     @RequestParam(required = true) String endDate) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm");
@@ -44,5 +45,23 @@ public class ScreeningResource {
             screenings = screeningService.findAllScreeningsBetweenDateSortedByMovieTitle(starTime, endTime);
         }
         return new ResponseEntity<>(screenings, HttpStatus.OK);
+    }
+
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Screening> getScreeningById(@PathVariable("id") Long id){
+        Screening screening = screeningService.findScreeningById(id);
+        return new ResponseEntity<>(screening, HttpStatus.OK);
+    }
+
+    @GetMapping("/find/{screeningId}/screeningRoom")
+    public ResponseEntity<ScreeningRoom> getScreeningRoomByScreeningId(@PathVariable("screeningId") Long id){
+        ScreeningRoom screeningRoom = screeningService.findScreeningById(id).getScreeningRoom();
+        return new ResponseEntity<>(screeningRoom, HttpStatus.OK);
+    }
+
+    @GetMapping("/find/{screeningId}/tableOfSeats")
+    public ResponseEntity<String[][]> getAllTicket(@PathVariable("screeningId") Long screeningId){
+        String[][] seats = screeningService.getTableOfSeatsByScreeningId(screeningId);
+        return new ResponseEntity<>(seats, HttpStatus.OK);
     }
 }

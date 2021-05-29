@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Screening {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
@@ -27,4 +28,9 @@ public class Screening {
     private ScreeningRoom screeningRoom;
 
     private LocalDateTime startingDateTime;
+
+    @OneToMany()
+    @JoinColumn(name = "screeningId")
+    private List<Ticket> tickets;
+
 }

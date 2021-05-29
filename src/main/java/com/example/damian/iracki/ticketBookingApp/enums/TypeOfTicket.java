@@ -12,4 +12,8 @@ public enum TypeOfTicket {
     private TypeOfTicket(BigDecimal price){
         this.price = price;
     }
+
+    public BigDecimal getPrice(){
+        return this.price;
+    }
 }
