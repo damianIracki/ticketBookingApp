@@ -1,13 +1,14 @@
 package com.example.damian.iracki.ticketBookingApp.entities;
 
 
-import com.example.damian.iracki.ticketBookingApp.enums.SeatStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table
@@ -23,6 +24,5 @@ public class ScreeningRoom {
     private int rowCount;
     private int seatsInRowCount;
 
-    private List<SeatStatus> seats;
 
 }

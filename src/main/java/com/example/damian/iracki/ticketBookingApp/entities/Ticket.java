@@ -26,4 +26,11 @@ public class Ticket {
     private PaymentStatus paymentStatus;
     private TypeOfTicket typeOfTicket;
 
+    private int numberOfRow;
+    private int numberOfSeatInRow;
+
+    private String name;
+    private String surname;
+    private String email;
+
 }
