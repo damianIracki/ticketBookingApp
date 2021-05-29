@@ -1,0 +1,47 @@
+package com.example.damian.iracki.ticketBookingApp.validators;
+
+import com.example.damian.iracki.ticketBookingApp.entities.Screening;
+import com.example.damian.iracki.ticketBookingApp.entities.Ticket;
+
+import java.time.LocalDateTime;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class TicketValidator {
+
+    private boolean checkTicketDate(Screening screening){
+        if(!LocalDateTime.now().isBefore(screening.getStartingDateTime().minusMinutes(15))){
+            throw new IllegalStateException("Is too late to book this ticket");
+        }
+        return true;
+    }
+
+    private boolean checkName(Ticket ticket){
+        Pattern namePattern = Pattern.compile("[A-ZŁŚ]{1}[a-ąęółśżźćń]+");
+        Matcher matcher = namePattern.matcher(ticket.getName());
+        if(!matcher.matches()){
+            throw new IllegalStateException("Name isn't correct. Name must begin at capital letter and can not" +
+                    " be short than 3 characters");
+        }
+        return true;
+    }
+
+    private boolean checkSurname(Ticket ticket){
+        Pattern surnamePattern = Pattern.compile("[A-ZĆŁŚŻ]{1}[a-ąęółśżźćń]{2,}[-][A-ZĆŁŚŻ]{1}[a-ąęółśżźćń]{2,}");
+        Matcher matcher = surnamePattern.matcher(ticket.getSurname());
+        if(!matcher.matches()){
+            throw new IllegalStateException("Surname isn't correct. Surname must begin at capital letter and can not" +
+                    " be short than 3 characters. Additionally to parts surname must be divided by \"-\" adn second part" +
+                    " must begin at capital letter too");
+        }
+        return true;
+    }
+
+    public boolean checkTicket(Ticket ticket, Screening screening){
+        if(checkName(ticket)&&checkSurname(ticket)&&checkTicketDate(screening)){
+            return true;
+        }
+        return false;
+    }
+
+}

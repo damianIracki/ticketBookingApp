@@ -33,6 +33,15 @@ public class TicketService {
         }
     }
 
+    public void addNewTicket(Ticket ticket){
+        Optional<Ticket> ticketOptional = ticketRepository.findTicketByScreeningIdAndNumberOfRowAndNumberOfSeatInRow
+                (ticket.getScreeningId(), ticket.getNumberOfRow(), ticket.getNumberOfSeatInRow());
+        if(ticketOptional.isPresent()){
+            throw new IllegalStateException("Taken seat isn't available");
+        }
+        ticketRepository.save(ticket);
+    }
+
     public List<Ticket> getAllTickets(){
         return ticketRepository.findAll();
     }

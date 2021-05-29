@@ -6,6 +6,7 @@ import com.example.damian.iracki.ticketBookingApp.entities.Screening;
 import com.example.damian.iracki.ticketBookingApp.entities.Ticket;
 import com.example.damian.iracki.ticketBookingApp.services.ScreeningService;
 import com.example.damian.iracki.ticketBookingApp.services.TicketService;
+import com.example.damian.iracki.ticketBookingApp.validators.TicketValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/ticket")
@@ -37,30 +40,32 @@ public class TicketResource {
 
     @PostMapping("/addTickets")
     public String addTickets(@RequestBody List<TicketDto> ticketDtos){
-        List<Ticket> tickets = mapAllTicketDtoToTicket(ticketDtos);
-        ticketService.addNewTickets(tickets);
-        BigDecimal price = new BigDecimal(0);
-        for (Ticket ticket : tickets) {
-            price = price.add(ticket.getTypeOfTicket().getPrice());
+        if(ticketDtos.size() < 1){
+            throw  new IllegalStateException("You must book one ticket at least");
         }
+        List<Ticket> tickets = mapAllTicketDtoToTicket(ticketDtos);
         Screening screening = screeningService.findScreeningById(tickets.get(0).getScreeningId());
+        TicketValidator ticketValidator = new TicketValidator();
+        for (Ticket ticket : tickets) {
+            if(ticketValidator.checkTicket(ticket, screening)){
+                ticketService.addNewTicket(ticket);
+            }
+        }
+        //ticketService.addNewTickets(tickets);
+        BigDecimal price = getTotalPrice(tickets);
         return "redirect: /ticket/summary?price=" + price + "&screeningId=" + screening.getId();
     }
 
     @GetMapping("/summary")
-    public String getSummary(@RequestParam BigDecimal price, @RequestParam Long screeningId){
-        StringBuilder stringBuilder = new StringBuilder();
-
-        String priceMessage = "Your summary to pay: " + price.toString() + "PLN.<br>";
-
+    public Map<String, Object> getSummary(@RequestParam BigDecimal price, @RequestParam Long screeningId){
         Screening screening = screeningService.findScreeningById(screeningId);
-        LocalDateTime paymentDeadline = screening.getStartingDateTime().minusDays(1);
-        String deadline = "You must make the payment by " + paymentDeadline.getDayOfMonth() + "-"
-                + paymentDeadline.getMonth() + " at the latest";
+        LocalDateTime deadline = screening.getStartingDateTime().minusMinutes(15);
 
-        stringBuilder.append(priceMessage);
-        stringBuilder.append(deadline);
-        return stringBuilder.toString();
+        Map<String, Object> summaryMap = new HashMap<>();
+        summaryMap.put("price", price);
+        summaryMap.put("deadline", deadline);
+
+        return summaryMap;
     }
 
     private List<Ticket> mapAllTicketDtoToTicket(List<TicketDto> ticketDtos){
@@ -70,5 +75,13 @@ public class TicketResource {
             tickets.add(ticket);
         }
         return tickets;
+    }
+
+    private BigDecimal getTotalPrice(List<Ticket> tickets){
+        BigDecimal price = new BigDecimal(0);
+        for (Ticket ticket : tickets) {
+            price = price.add(ticket.getTypeOfTicket().getPrice());
+        }
+        return price;
     }
 }
