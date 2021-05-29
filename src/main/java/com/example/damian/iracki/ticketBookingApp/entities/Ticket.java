@@ -32,5 +32,4 @@ public class Ticket {
     private String name;
     private String surname;
     private String email;
-
 }

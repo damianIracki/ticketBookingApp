@@ -27,7 +27,5 @@ public class Screening {
     @JoinColumn(name="screening_room_id")
     private ScreeningRoom screeningRoom;
 
-    private LocalDate startingDate;
-    private LocalTime startingTime;
-
+    private LocalDateTime startingDateTime;
 }

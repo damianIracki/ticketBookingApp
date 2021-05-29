@@ -24,5 +24,4 @@ public class ScreeningRoom {
     private int rowCount;
     private int seatsInRowCount;
 
-
 }
