@@ -33,4 +33,9 @@ public class Screening {
     @JoinColumn(name = "screeningId")
     private List<Ticket> tickets;
 
+    public Screening(Movie movie, ScreeningRoom screeningRoom, LocalDateTime startingDateTime) {
+        this.movie = movie;
+        this.screeningRoom = screeningRoom;
+        this.startingDateTime = startingDateTime;
+    }
 }

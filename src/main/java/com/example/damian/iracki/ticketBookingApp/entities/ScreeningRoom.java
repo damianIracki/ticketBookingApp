@@ -21,4 +21,9 @@ public class ScreeningRoom {
     private int rowCount;
     private int seatsInRowCount;
 
+    public ScreeningRoom(String name, int rowCount, int seatsInRowCount) {
+        this.name = name;
+        this.rowCount = rowCount;
+        this.seatsInRowCount = seatsInRowCount;
+    }
 }
