@@ -62,6 +62,16 @@ public class ScreeningResource {
     @GetMapping("/find/{screeningId}/tableOfSeats")
     public ResponseEntity<String[][]> getAllTicket(@PathVariable("screeningId") Long screeningId){
         String[][] seats = screeningService.getTableOfSeatsByScreeningId(screeningId);
+        for (int i = 0; i < seats.length; i++){
+            for(int j = 1; j < seats[i].length-1; j++){
+                if(seats[i][j].equals("UNAVAILABLE")){
+                    continue;
+                }
+                if(seats[i][j-1].equals("UNAVAILABLE") && seats[i][j+1].equals("UNAVAILABLE")){
+                    seats[i][j] = "UNAVAILABLE";
+                }
+            }
+        }
         return new ResponseEntity<>(seats, HttpStatus.OK);
     }
 }

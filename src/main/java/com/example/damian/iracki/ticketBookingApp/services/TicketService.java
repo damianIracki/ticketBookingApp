@@ -5,6 +5,7 @@ import com.example.damian.iracki.ticketBookingApp.entities.Ticket;
 import com.example.damian.iracki.ticketBookingApp.repositories.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,7 @@ public class TicketService {
         this.ticketRepository = ticketRepository;
     }
 
-    public void addNewTickets(List<Ticket> tickets){
+/*    public void addNewTickets(List<Ticket> tickets){
         if(tickets.size() < 1){
             throw  new IllegalStateException("You must book one ticket at least");
         }
@@ -31,7 +32,7 @@ public class TicketService {
             }
             ticketRepository.save(ticket);
         }
-    }
+    }*/
 
     public void addNewTicket(Ticket ticket){
         Optional<Ticket> ticketOptional = ticketRepository.findTicketByScreeningIdAndNumberOfRowAndNumberOfSeatInRow

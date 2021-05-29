@@ -10,6 +10,7 @@ import com.example.damian.iracki.ticketBookingApp.validators.TicketValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -38,6 +39,7 @@ public class TicketResource {
         return new ResponseEntity<>(tickets, HttpStatus.OK);
     }
 
+    @Transactional
     @PostMapping("/addTickets")
     public String addTickets(@RequestBody List<TicketDto> ticketDtos){
         if(ticketDtos.size() < 1){
