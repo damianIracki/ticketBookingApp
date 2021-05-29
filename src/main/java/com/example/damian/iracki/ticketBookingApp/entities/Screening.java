@@ -5,9 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Entity
 @Table
@@ -21,10 +19,11 @@ public class Screening {
 
     @ManyToOne
     @JoinColumn(name = "movie_id")
+    @OrderBy(value = "title ASC")
     private Movie movie;
 
     @ManyToOne
-    @JoinColumn(name="screening_room_id")
+    @JoinColumn(name = "screening_room_id")
     private ScreeningRoom screeningRoom;
 
     private LocalDateTime startingDateTime;
