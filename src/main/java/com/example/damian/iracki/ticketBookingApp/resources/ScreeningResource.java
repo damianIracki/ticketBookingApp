@@ -36,13 +36,15 @@ public class ScreeningResource {
                                                                     @RequestParam(required = true) String startDate,
                                                                     @RequestParam(required = true) String endDate) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm");
-        LocalDateTime starTime = LocalDateTime.parse(startDate, dateTimeFormatter);
+        LocalDateTime startTime = LocalDateTime.parse(startDate, dateTimeFormatter);
         LocalDateTime endTime = LocalDateTime.parse(endDate, dateTimeFormatter);
         List<Screening> screenings = new ArrayList<>();
         if(sortingType.equals("date")){
-            screenings = screeningService.findAllScreeningsBetweenDateSortedByDate(starTime, endTime);
+            screenings = screeningService.findAllScreeningsBetweenDateSortedByDate(startTime, endTime);
         } else if(sortingType.equals("title")){
-            screenings = screeningService.findAllScreeningsBetweenDateSortedByMovieTitle(starTime, endTime);
+            screenings = screeningService.findAllScreeningsBetweenDateSortedByMovieTitle(startTime, endTime);
+        } else if(sortingType.equals("dateTitle")){
+            screenings = screeningService.findAllScreeningsBetweenDateSortedByDateAndMovieTitle(startTime, endTime);
         }
         return new ResponseEntity<>(screenings, HttpStatus.OK);
     }

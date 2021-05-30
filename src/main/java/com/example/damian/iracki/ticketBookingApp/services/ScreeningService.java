@@ -31,6 +31,10 @@ public class ScreeningService {
         return screeningRepository.findAllByStartingDateTimeBetweenOrderByMovie_title(startDate, endDate);
     }
 
+    public List<Screening> findAllScreeningsBetweenDateSortedByDateAndMovieTitle(LocalDateTime startDate, LocalDateTime endDate) {
+        return screeningRepository.findAllByStartingDateTimeBetweenOrderByStartingDateTimeAscMovie_title(startDate, endDate);
+    }
+
     public Screening findScreeningById(Long id){
         Screening screening = screeningRepository.findScreeningById(id)
                 .orElseThrow(() -> new IllegalStateException("Selected screening doesn't exists "));

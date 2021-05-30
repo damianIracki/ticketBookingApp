@@ -53,7 +53,6 @@ public class TicketResource {
                 ticketService.addNewTicket(ticket);
             }
         }
-        //ticketService.addNewTickets(tickets);
         BigDecimal price = getTotalPrice(tickets);
         return "redirect: /ticket/summary?price=" + price + "&screeningId=" + screening.getId();
     }

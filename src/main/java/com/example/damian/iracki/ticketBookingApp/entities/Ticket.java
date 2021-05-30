@@ -36,13 +36,4 @@ public class Ticket {
     private String name;
     private String surname;
 
-    public Ticket(Long screeningId, PaymentStatus paymentStatus, TypeOfTicket typeOfTicket, int numberOfRow, int numberOfSeatInRow, String name, String surname) {
-        this.screeningId = screeningId;
-        this.paymentStatus = paymentStatus;
-        this.typeOfTicket = typeOfTicket;
-        this.numberOfRow = numberOfRow;
-        this.numberOfSeatInRow = numberOfSeatInRow;
-        this.name = name;
-        this.surname = surname;
-    }
 }
