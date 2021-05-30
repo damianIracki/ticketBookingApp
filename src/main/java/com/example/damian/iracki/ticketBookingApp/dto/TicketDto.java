@@ -1,6 +1,7 @@
 package com.example.damian.iracki.ticketBookingApp.dto;
 
 import com.example.damian.iracki.ticketBookingApp.entities.Ticket;
+import com.example.damian.iracki.ticketBookingApp.enums.PaymentStatus;
 import com.example.damian.iracki.ticketBookingApp.enums.TypeOfTicket;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,6 +32,7 @@ public class TicketDto {
         ticket.setNumberOfSeatInRow(ticketDto.getNumberOfSeatInRow());
         ticket.setTypeOfTicket(ticketDto.getTypeOfTicket());
         ticket.setScreeningId(ticketDto.getScreeningId());
+        ticket.setPaymentStatus(PaymentStatus.UNPAID);
 
         return ticket;
     }

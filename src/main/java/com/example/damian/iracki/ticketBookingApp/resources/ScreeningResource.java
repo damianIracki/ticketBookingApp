@@ -35,7 +35,7 @@ public class ScreeningResource {
     }
 
     //Ind date param put string in format yyyy-MM-dd_HH:mm
-    @GetMapping("/{sortingType}")
+    @GetMapping("/sorted/{sortingType}")
     public ResponseEntity<List<Screening>> getScreeningsBetweenDate(@PathVariable("sortingType") String sortingType,
                                                                     @RequestParam(required = false) String startDate,
                                                                     @RequestParam(required = false) String endDate) {
