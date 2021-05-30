@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/screening")
+@RequestMapping("/screenings")
 public class ScreeningResource {
 
     private final ScreeningService screeningService;
@@ -28,17 +28,17 @@ public class ScreeningResource {
         this.screeningService = screeningService;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/")
     public ResponseEntity<List<Screening>> getAllScreenings() {
         List<Screening> screenings = screeningService.findAllScreeningOrderByStartingDate();
         return new ResponseEntity<>(screenings, HttpStatus.OK);
     }
 
     //Ind date param put string in format yyyy-MM-dd_HH:mm
-    @GetMapping("/date/{sortingType}")
+    @GetMapping("/{sortingType}")
     public ResponseEntity<List<Screening>> getScreeningsBetweenDate(@PathVariable("sortingType") String sortingType,
-                                                                    @RequestParam(required = true) String startDate,
-                                                                    @RequestParam(required = true) String endDate) {
+                                                                    @RequestParam(required = false) String startDate,
+                                                                    @RequestParam(required = false) String endDate) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm");
         LocalDateTime startTime = LocalDateTime.parse(startDate, dateTimeFormatter);
         LocalDateTime endTime = LocalDateTime.parse(endDate, dateTimeFormatter);
@@ -53,20 +53,20 @@ public class ScreeningResource {
         return new ResponseEntity<>(screenings, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Screening> getScreeningById(@PathVariable("id") Long id) {
         Screening screening = screeningService.findScreeningById(id);
         return new ResponseEntity<>(screening, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{screeningId}/screeningRoom")
-    public ResponseEntity<ScreeningRoom> getScreeningRoomByScreeningId(@PathVariable("screeningId") Long id) {
+    @GetMapping("/{id}/screeningRoom")
+    public ResponseEntity<ScreeningRoom> getScreeningRoomByScreeningId(@PathVariable("id") Long id) {
         ScreeningRoom screeningRoom = screeningService.findScreeningById(id).getScreeningRoom();
         return new ResponseEntity<>(screeningRoom, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{screeningId}/tableOfSeats")
-    public ResponseEntity<String[][]> getAllTicket(@PathVariable("screeningId") Long screeningId) {
+    @GetMapping("/{id}/tableOfSeats")
+    public ResponseEntity<String[][]> getAllTicket(@PathVariable("id") Long screeningId) {
         String[][] seats = screeningService.getTableOfSeatsByScreeningId(screeningId);
         for (int i = 0; i < seats.length; i++) {
             for (int j = 1; j < seats[i].length - 1; j++) {

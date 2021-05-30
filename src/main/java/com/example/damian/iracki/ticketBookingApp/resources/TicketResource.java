@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/ticket")
+@RequestMapping("/tickets")
 public class TicketResource {
 
     private final TicketService ticketService;
@@ -39,14 +39,14 @@ public class TicketResource {
         this.screeningService = screeningService;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/")
     public ResponseEntity<List<Ticket>> getAllTickets() {
         List<Ticket> tickets = ticketService.getAllTickets();
         return new ResponseEntity<>(tickets, HttpStatus.OK);
     }
 
     @Transactional
-    @PostMapping("/addTickets")
+    @PostMapping("/")
     public String addTickets(@RequestBody List<TicketDto> ticketDtos){
         if(ticketDtos.size() < 1){
             throw  new IllegalStateException("You must book one ticket at least");
