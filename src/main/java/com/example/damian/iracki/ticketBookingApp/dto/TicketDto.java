@@ -2,7 +2,10 @@ package com.example.damian.iracki.ticketBookingApp.dto;
 
 import com.example.damian.iracki.ticketBookingApp.entities.Ticket;
 import com.example.damian.iracki.ticketBookingApp.enums.TypeOfTicket;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
@@ -31,7 +34,4 @@ public class TicketDto {
 
         return ticket;
     }
-
-
-
 }

@@ -9,16 +9,17 @@ import java.util.regex.Pattern;
 
 public class TicketValidator {
 
-    public boolean checkTicket(Ticket ticket, Screening screening){
-        if(checkName(ticket) && checkSurname(ticket) && checkTicketDate(screening)
+    public boolean checkTicket(Ticket ticket, Screening screening, LocalDateTime localDateTime){
+
+        if(checkName(ticket) && checkSurname(ticket) && checkTicketDate(screening, localDateTime)
                 && checkCorrectnessOfSeat(ticket,screening)){
             return true;
         }
         return false;
     }
 
-    private boolean checkTicketDate(Screening screening){
-        if(!LocalDateTime.now().isBefore(screening.getStartingDateTime().minusMinutes(15))){
+    private boolean checkTicketDate(Screening screening, LocalDateTime localDateTime){
+        if(!localDateTime.isBefore(screening.getStartingDateTime().minusMinutes(15))){
             throw new IllegalStateException("Is too late to book this ticket");
         }
         return true;

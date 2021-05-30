@@ -1,8 +1,8 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.0'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
-	id 'application'
+    id 'org.springframework.boot' version '2.5.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'application'
 }
 
 group = 'com.example.damian.iracki.'
@@ -10,30 +10,36 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '8'
 
 application{
-	apply plugin: 'application'
-	mainClassName = './src/main/java/com/example/damian/iracki/ticketBookingApp/TicketBookingAppApplication.java'
+    apply plugin: 'application'
+    mainClassName = 'com.example.damian.iracki.ticketBookingApp.TicketBookingAppApplication'
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "$mainClassName"
+    }
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
