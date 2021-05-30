@@ -1,0 +1,65 @@
+import java.time.LocalDateTime
+
+plugins {
+    id 'org.springframework.boot' version '2.5.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'application'
+}
+
+group = 'com.example.damian.iracki.'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '8'
+
+application{
+    apply plugin: 'application'
+    mainClassName = 'com.example.damian.iracki.ticketBookingApp.TicketBookingAppApplication'
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "$mainClassName"
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task generatePostsAndComments() {
+    doLast {
+        File dataSql = file("src/main/resources/data.sql")
+        dataSql.write("")
+        //posty
+        for (int i = 1; i <= 100; i++) {
+            dataSql.append("insert into post(id, title, content, created) " +
+                    "values (${i}, 'Test post ${i}', 'Content ${i}', '" + LocalDateTime.now().minusDays(100 - i) + "');\n")
+        }
+        //komentarze
+        for (int i = 1; i <= 100; i++) {
+            int postId = 1 + i / 10
+            dataSql.append("insert into comment(id, post_id, content, created) " +
+                    "values (${i}, ${postId}, 'Comment ${i}', '" + LocalDateTime.now().minusDays(100 - i) + "');\n")
+        }
+    }
+}
