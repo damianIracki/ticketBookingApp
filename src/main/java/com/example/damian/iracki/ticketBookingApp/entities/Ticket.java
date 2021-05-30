@@ -3,16 +3,15 @@ package com.example.damian.iracki.ticketBookingApp.entities;
 
 import com.example.damian.iracki.ticketBookingApp.enums.PaymentStatus;
 import com.example.damian.iracki.ticketBookingApp.enums.TypeOfTicket;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.Value;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
@@ -21,16 +20,10 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class Ticket {
     @Id
-    @SequenceGenerator(
-            name = "ticket_sequence",
-            sequenceName = "ticket_sequence",
-            allocationSize = 1)
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "ticket_sequence")
+    @GeneratedValue
     private Long id;
 
     private Long screeningId;
@@ -43,5 +36,4 @@ public class Ticket {
 
     private String name;
     private String surname;
-
 }

@@ -19,7 +19,7 @@ curl --location --request POST 'http://localhost:8080/tickets/' \
     {
     "screeningId": 5,
     "typeOfTicket": "NORMAL",
-    "numberOfRow": 5,
+    "numberOfRow": 2,
     "numberOfSeatInRow": 3,
     "name": "Adam",
     "surname": "Żuber"
@@ -27,7 +27,7 @@ curl --location --request POST 'http://localhost:8080/tickets/' \
     {
     "screeningId": 5,
     "typeOfTicket": "CHILD",
-    "numberOfRow": 5,
+    "numberOfRow": 2,
     "numberOfSeatInRow": 2,
     "name": "Adam",
     "surname": "Żuber"
