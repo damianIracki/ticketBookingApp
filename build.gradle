@@ -2,11 +2,17 @@ plugins {
 	id 'org.springframework.boot' version '2.5.0'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'application'
 }
 
 group = 'com.example.damian.iracki.'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '8'
+
+application{
+	apply plugin: 'application'
+	mainClassName = './src/main/java/com/example/damian/iracki/ticketBookingApp/TicketBookingAppApplication.java'
+}
 
 configurations {
 	compileOnly {

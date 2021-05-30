@@ -15,7 +15,13 @@ import java.util.List;
 @NoArgsConstructor
 public class Screening {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(
+            name = "screening_sequence",
+            sequenceName = "screening_sequence",
+            allocationSize = 1)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "screening_sequence")
     private Long id;
 
     @ManyToOne

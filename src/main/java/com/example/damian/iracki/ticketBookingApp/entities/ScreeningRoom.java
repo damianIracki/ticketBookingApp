@@ -15,7 +15,13 @@ import javax.persistence.*;
 public class ScreeningRoom {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(
+            name = "screening_room_sequence",
+            sequenceName = "screening_room_sequence",
+            allocationSize = 1)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "screening_room_sequence")
     private Long id;
     private String name;
     private int rowCount;
