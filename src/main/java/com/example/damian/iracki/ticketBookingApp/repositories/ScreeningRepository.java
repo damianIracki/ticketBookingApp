@@ -14,9 +14,9 @@ public interface ScreeningRepository extends JpaRepository<Screening, Long> {
 
     List<Screening> findAllByStartingDateTimeBetweenOrderByStartingDateTime(LocalDateTime startDate, LocalDateTime endDate);
 
-    List<Screening> findAllByStartingDateTimeBetweenOrderByStartingDateTimeAscMovie_title(LocalDateTime startDate, LocalDateTime endDate);
+    List<Screening> findAllByStartingDateTimeBetweenOrderByStartingDateTimeAscMovieTitle(LocalDateTime startDate, LocalDateTime endDate);
 
-    List<Screening> findAllByStartingDateTimeBetweenOrderByMovie_title(LocalDateTime startDate, LocalDateTime endDate);
+    List<Screening> findAllByStartingDateTimeBetweenOrderByMovieTitle(LocalDateTime startDate, LocalDateTime endDate);
 
     Optional<Screening> findScreeningById(Long id);
 }

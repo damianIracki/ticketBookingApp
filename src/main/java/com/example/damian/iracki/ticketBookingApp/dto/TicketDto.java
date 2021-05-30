@@ -5,23 +5,23 @@ import com.example.damian.iracki.ticketBookingApp.enums.TypeOfTicket;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class TicketDto {
 
-    private Long screeningId;
+    private final Long screeningId;
 
-    private int numberOfRow;
-    private int numberOfSeatInRow;
+    private final int numberOfRow;
+    private final int numberOfSeatInRow;
 
-    private TypeOfTicket typeOfTicket;
+    private final TypeOfTicket typeOfTicket;
 
-    private String name;
-    private String surname;
+    private final String name;
+    private final String surname;
 
     public Ticket mapTicketDtoToTicket(TicketDto ticketDto){
         Ticket ticket = new Ticket();

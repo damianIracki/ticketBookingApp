@@ -1,3 +1,4 @@
+/*
 package com.example.damian.iracki.ticketBookingApp.configs;
 
 import com.example.damian.iracki.ticketBookingApp.entities.Movie;
@@ -61,3 +62,4 @@ public class DataConfig {
         };
     }
 }
+*/

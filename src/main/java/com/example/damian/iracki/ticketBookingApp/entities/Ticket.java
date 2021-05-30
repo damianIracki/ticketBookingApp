@@ -6,6 +6,7 @@ import com.example.damian.iracki.ticketBookingApp.enums.TypeOfTicket;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Value;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @NoArgsConstructor
+
 public class Ticket {
     @Id
     @SequenceGenerator(

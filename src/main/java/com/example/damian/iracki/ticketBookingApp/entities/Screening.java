@@ -19,7 +19,6 @@ import java.util.List;
 @Entity
 @Table
 @Getter
-@Setter
 @NoArgsConstructor
 public class Screening {
     @Id
