@@ -1,0 +1,35 @@
+com/example/damian/iracki/ticketBookingApp/services/TicketService.java
+ com.example.damian.iracki.ticketBookingApp.services.TicketService
+com/example/damian/iracki/ticketBookingApp/entities/Screening.java
+ com.example.damian.iracki.ticketBookingApp.entities.Screening
+com/example/damian/iracki/ticketBookingApp/entities/Movie.java
+ com.example.damian.iracki.ticketBookingApp.entities.Movie
+com/example/damian/iracki/ticketBookingApp/entities/Ticket.java
+ com.example.damian.iracki.ticketBookingApp.entities.Ticket
+com/example/damian/iracki/ticketBookingApp/enums/TypeOfTicket.java
+ com.example.damian.iracki.ticketBookingApp.enums.TypeOfTicket
+com/example/damian/iracki/ticketBookingApp/enums/PaymentStatus.java
+ com.example.damian.iracki.ticketBookingApp.enums.PaymentStatus
+com/example/damian/iracki/ticketBookingApp/validators/TicketValidator.java
+ com.example.damian.iracki.ticketBookingApp.validators.TicketValidator
+com/example/damian/iracki/ticketBookingApp/repositories/TicketRepository.java
+ com.example.damian.iracki.ticketBookingApp.repositories.TicketRepository
+com/example/damian/iracki/ticketBookingApp/repositories/MovieRepository.java
+ com.example.damian.iracki.ticketBookingApp.repositories.MovieRepository
+com/example/damian/iracki/ticketBookingApp/TicketBookingAppApplication.java
+ com.example.damian.iracki.ticketBookingApp.TicketBookingAppApplication
+com/example/damian/iracki/ticketBookingApp/repositories/ScreeningRoomRepository.java
+ com.example.damian.iracki.ticketBookingApp.repositories.ScreeningRoomRepository
+com/example/damian/iracki/ticketBookingApp/entities/ScreeningRoom.java
+ com.example.damian.iracki.ticketBookingApp.entities.ScreeningRoom
+com/example/damian/iracki/ticketBookingApp/resources/TicketResource.java
+ com.example.damian.iracki.ticketBookingApp.resources.TicketResource
+com/example/damian/iracki/ticketBookingApp/resources/ScreeningResource.java
+ com.example.damian.iracki.ticketBookingApp.resources.ScreeningResource
+com/example/damian/iracki/ticketBookingApp/dto/TicketDto.java
+ com.example.damian.iracki.ticketBookingApp.dto.TicketDto
+ com.example.damian.iracki.ticketBookingApp.dto.TicketDto$TicketDtoBuilder
+com/example/damian/iracki/ticketBookingApp/services/ScreeningService.java
+ com.example.damian.iracki.ticketBookingApp.services.ScreeningService
+com/example/damian/iracki/ticketBookingApp/repositories/ScreeningRepository.java
+ com.example.damian.iracki.ticketBookingApp.repositories.ScreeningRepository

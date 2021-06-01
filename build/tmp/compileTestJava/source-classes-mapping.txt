@@ -1,0 +1,4 @@
+com/example/damian/iracki/ticketBookingApp/TicketBookingAppApplicationTests.java
+ com.example.damian.iracki.ticketBookingApp.TicketBookingAppApplicationTests
+com/example/damian/iracki/ticketBookingApp/ScreeningResourceTest.java
+ com.example.damian.iracki.ticketBookingApp.ScreeningResourceTest
